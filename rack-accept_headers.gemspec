@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency 'rack'
+  spec.add_dependency 'rack', '>= 1.5.2'
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake'
