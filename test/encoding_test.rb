@@ -1,6 +1,6 @@
-require File.expand_path('../helper', __FILE__)
+require_relative 'test_helper'
 
-class EncodingTest < Test::Unit::TestCase
+class EncodingTest < Minitest::Test
   E = Rack::Accept::Encoding
 
   def test_qvalue

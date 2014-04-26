@@ -1,6 +1,6 @@
-require File.expand_path('../helper', __FILE__)
+require_relative 'test_helper'
 
-class HeaderTest < Test::Unit::TestCase
+class HeaderTest < Minitest::Test
   H = Rack::Accept::Header
 
   def test_parse_and_join
@@ -62,7 +62,7 @@ class HeaderTest < Test::Unit::TestCase
   end
 
   def test_invalid_header
-    assert_raise Rack::Accept::Header::InvalidHeader do
+    assert_raises Rack::Accept::Header::InvalidHeader do
       h = H.parse(' / ')
     end
   end

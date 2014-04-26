@@ -1,6 +1,6 @@
-require File.expand_path('../helper', __FILE__)
+require_relative 'test_helper'
 
-class RequestTest < Test::Unit::TestCase
+class RequestTest < Minitest::Test
   R = Rack::Accept::Request
 
   def test_media_type

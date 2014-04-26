@@ -1,6 +1,6 @@
-require File.expand_path('../helper', __FILE__)
+require_relative 'test_helper'
 
-class MediaTypeTest < Test::Unit::TestCase
+class MediaTypeTest < Minitest::Test
   M = Rack::Accept::MediaType
 
   def test_qvalue
@@ -17,7 +17,7 @@ class MediaTypeTest < Test::Unit::TestCase
   end
 
   def test_invalid_media_type
-    assert_raise Rack::Accept::Header::InvalidHeader do
+    assert_raises Rack::Accept::Header::InvalidHeader do
       m = M.new('')
       m = M.new('text')
       m = M.new('text;q=1')

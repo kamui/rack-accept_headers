@@ -1,28 +1,27 @@
-$LOAD_PATH.unshift(File.expand_path('../lib', __FILE__))
-
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'rack/accept/version'
 
-Gem::Specification.new do |s|
-  s.name = 'rack-accept'
-  s.version = Rack::Accept.version
-  s.date = Time.now.strftime('%Y-%m-%d')
+Gem::Specification.new do |spec|
+  spec.name          = "rack-accept"
+  spec.version       = Rack::Accept::VERSION
+  spec.authors       = ["Michael Jackson"]
+  spec.email         = ["mjijackson@gmail.com"]
+  spec.summary       = %q{HTTP Accept* for Ruby/Rack}
+  spec.description   = %q{HTTP Accept, Accept-Charset, Accept-Encoding, and Accept-Language for Ruby/Rack}
+  spec.homepage      = "https://github.com/mjijackson/rack-accept"
+  spec.license       = "MIT"
 
-  s.summary = 'HTTP Accept* for Ruby/Rack'
-  s.description = 'HTTP Accept, Accept-Charset, Accept-Encoding, and Accept-Language for Ruby/Rack'
+  spec.files         = `git ls-files`.split($/)
+  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  spec.test_files    = spec.files.grep(%r{^(test|test)/})
+  spec.require_paths = ["lib"]
 
-  s.author = 'Michael Jackson'
-  s.email = 'mjijackson@gmail.com'
+  spec.add_dependency 'rack'
 
-  s.require_paths = %w< lib >
-
-  s.files = Dir['lib/**/*.rb'] +
-    Dir['test/*.rb'] +
-    %w< CHANGES rack-accept.gemspec Rakefile README.md >
-
-  s.test_files = s.files.select {|path| path =~ /^test\/.*_test.rb/ }
-
-  s.add_dependency('rack', '>= 0.4')
-  s.add_development_dependency('rake')
-
-  s.homepage = 'http://mjijackson.github.com/rack-accept'
+  spec.add_development_dependency 'bundler'
+  spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'minitest'
+  spec.add_development_dependency 'guard'
+  spec.add_development_dependency 'guard-minitest'
 end

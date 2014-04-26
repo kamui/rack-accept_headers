@@ -1,6 +1,6 @@
-require File.expand_path('../helper', __FILE__)
+require_relative 'test_helper'
 
-class LanguageTest < Test::Unit::TestCase
+class LanguageTest < Minitest::Test
   L = Rack::Accept::Language
 
   def test_qvalue

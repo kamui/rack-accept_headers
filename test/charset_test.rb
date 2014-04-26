@@ -1,6 +1,6 @@
-require File.expand_path('../helper', __FILE__)
+require_relative 'test_helper'
 
-class CharsetTest < Test::Unit::TestCase
+class CharsetTest < Minitest::Test
   C = Rack::Accept::Charset
 
   def test_qvalue

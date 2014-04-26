@@ -1,6 +1,6 @@
-require File.expand_path('../helper', __FILE__)
+require_relative 'test_helper'
 
-class ContextTest < Test::Unit::TestCase
+class ContextTest < Minitest::Test
   def media_types; Proc.new {|c| c.media_types = %w< text/html > } end
   def charsets;    Proc.new {|c| c.charsets = %w< iso-8859-5 > }   end
   def encodings;   Proc.new {|c| c.encodings = %w< gzip > }        end
