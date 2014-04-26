@@ -99,6 +99,73 @@ Many user agents are careless about the types of Accept headers they send, and
 depend on apps not being too picky. Instead of automatically sending a 406, you
 should probably only send one when absolutely necessary._
 
+**Rack::AcceptHeaders** supports accept-extension parameter support. Here's an
+example:
+
+```ruby
+require 'rack/accept_headers'
+
+use Rack::AcceptHeaders
+
+app = lambda do |env|
+    SUPPORTED_MEDIA_TYPES = {
+      "text/html" => :html
+      "application/json" => :json,
+      "text/xml" => :xml
+    }
+
+  accept = env['rack-accept_headers.request']
+  response = Rack::Response.new
+
+  if accept
+    media_type = accept.media_type.best_of(SUPPORTED_MEDIA_TYPES.keys)
+
+    # Here, I would return a 415 Unsupported media type, if media_type is nil
+    # The unsupported_media_type call is left unimplemented here
+    # unsupported_media_type unless media_type
+
+    # To output the media_type symbol
+    # puts SUPPORTED_MEDIA_TYPES[media_type]
+
+    # To return a hash of accept-extension params for the given media type
+    # puts accept.media_type.params(media_type)
+
+    response['Content-Type'] = media_type
+    response.write %Q{{ "message" : "Hello. You accept #{media_type}" }}
+  else
+    media_type = "*/*"
+    response['Content-Type'] = SUPPORTED_MEDIA_TYPES.keys.first
+    response.write "Defaulting to #{response['Content-Type']}."
+  end
+
+  response.finish
+end
+
+run app
+```
+
+So, given this `Accept` header:
+
+```
+Accept: application/json;version=1.0;q=0.1
+```
+
+```ruby
+accept = env['rack-accept_headers.request']
+params = accept.media_type.params['application/json')
+```
+
+The `params` hash will end up with this value:
+
+```ruby
+{
+  "application/json" : {
+    "q" : 0.1,
+    "version" : "1.0"
+  }
+}
+```
+
 Additionally, **Rack::AcceptHeaders** may be used outside of a Rack context to provide
 any Ruby app the ability to construct and interpret Accept headers.
 
