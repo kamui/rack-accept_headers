@@ -1,17 +1,16 @@
 require 'rack'
+require 'rack/accept/header'
+require 'rack/accept/charset'
+require 'rack/accept/context'
+require 'rack/accept/encoding'
+require 'rack/accept/language'
+require 'rack/accept/media_type'
+require 'rack/accept/request'
+require 'rack/accept/response'
 
 module Rack::Accept
   # Enables Rack::Accept to be used as a Rack middleware.
   def self.new(app, &block)
     Context.new(app, &block)
   end
-
-  autoload :Charset,    'rack/accept/charset'
-  autoload :Context,    'rack/accept/context'
-  autoload :Encoding,   'rack/accept/encoding'
-  autoload :Header,     'rack/accept/header'
-  autoload :Language,   'rack/accept/language'
-  autoload :MediaType,  'rack/accept/media_type'
-  autoload :Request,    'rack/accept/request'
-  autoload :Response,   'rack/accept/response'
 end
