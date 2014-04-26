@@ -1,7 +1,7 @@
 require 'rack/response'
 
-module Rack::Accept
-  # The base class for responses issued by Rack::Accept.
+module Rack::AcceptHeaders
+  # The base class for responses issued by Rack::AcceptHeaders.
   class Response < Rack::Response
     # Marks this response as being unacceptable and clears the response body.
     #

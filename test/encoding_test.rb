@@ -1,7 +1,7 @@
 require_relative 'test_helper'
 
 class EncodingTest < Minitest::Test
-  E = Rack::Accept::Encoding
+  E = Rack::AcceptHeaders::Encoding
 
   def test_qvalue
     e = E.new('')

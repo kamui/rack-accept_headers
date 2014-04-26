@@ -24,8 +24,8 @@ task :api => FileList['lib/**/*.rb'] do |t|
     --inline-source
     --line-numbers
     --accessor option_accessor=RW
-    --main Rack::Accept
-    --title 'Rack::Accept API Documentation'
+    --main Rack::AcceptHeaders
+    --title 'Rack::AcceptHeaders API Documentation'
     #{t.prerequisites.join(' ')}
   SH
 end
@@ -35,7 +35,7 @@ CLEAN.include 'api'
 # PACKAGING & INSTALLATION ####################################################
 
 if defined?(Gem)
-  $spec = eval("#{File.read('rack-accept.gemspec')}")
+  $spec = eval("#{File.read('rack-accept_headers.gemspec')}")
 
   directory 'dist'
 
@@ -44,7 +44,7 @@ if defined?(Gem)
   end
 
   file package('.gem') => %w< dist > + $spec.files do |f|
-    sh "gem build rack-accept.gemspec"
+    sh "gem build rack-accept_headers.gemspec"
     mv File.basename(f.name), f.name
   end
 

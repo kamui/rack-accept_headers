@@ -1,4 +1,4 @@
-module Rack::Accept
+module Rack::AcceptHeaders
   # Represents an HTTP Accept-Charset header according to the HTTP 1.1
   # specification, and provides several convenience methods for determining
   # acceptable character sets.

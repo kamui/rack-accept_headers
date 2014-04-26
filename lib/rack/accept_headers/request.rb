@@ -1,7 +1,7 @@
 require 'rack/request'
 
-module Rack::Accept
-  # A container class for convenience methods when Rack::Accept is used on the
+module Rack::AcceptHeaders
+  # A container class for convenience methods when Rack::AcceptHeaders is used on the
   # request level as Rack middleware. Instances of this class also manage a
   # lightweight cache of various header instances to speed up execution.
   class Request < Rack::Request
@@ -11,22 +11,22 @@ module Rack::Accept
       @env = env
     end
 
-    # Provides access to the Rack::Accept::MediaType instance for this request.
+    # Provides access to the Rack::AcceptHeaders::MediaType instance for this request.
     def media_type
       @media_type ||= MediaType.new(env['HTTP_ACCEPT'])
     end
 
-    # Provides access to the Rack::Accept::Charset instance for this request.
+    # Provides access to the Rack::AcceptHeaders::Charset instance for this request.
     def charset
       @charset ||= Charset.new(env['HTTP_ACCEPT_CHARSET'])
     end
 
-    # Provides access to the Rack::Accept::Encoding instance for this request.
+    # Provides access to the Rack::AcceptHeaders::Encoding instance for this request.
     def encoding
       @encoding ||= Encoding.new(env['HTTP_ACCEPT_ENCODING'])
     end
 
-    # Provides access to the Rack::Accept::Language instance for this request.
+    # Provides access to the Rack::AcceptHeaders::Language instance for this request.
     def language
       @language ||= Language.new(env['HTTP_ACCEPT_LANGUAGE'])
     end
@@ -58,7 +58,7 @@ module Rack::Accept
     # Determines the best media type to use in a response from the given media
     # types, if any is acceptable. For more information on how this value is
     # determined, see the documentation for
-    # Rack::Accept::Header::PublicInstanceMethods#sort.
+    # Rack::AcceptHeaders::Header::PublicInstanceMethods#sort.
     def best_media_type(values)
       media_type.best_of(values)
     end
@@ -66,7 +66,7 @@ module Rack::Accept
     # Determines the best character set to use in a response from the given
     # character sets, if any is acceptable. For more information on how this
     # value is determined, see the documentation for
-    # Rack::Accept::Header::PublicInstanceMethods#sort.
+    # Rack::AcceptHeaders::Header::PublicInstanceMethods#sort.
     def best_charset(values)
       charset.best_of(values)
     end
@@ -74,7 +74,7 @@ module Rack::Accept
     # Determines the best encoding to use in a response from the given
     # encodings, if any is acceptable. For more information on how this value
     # is determined, see the documentation for
-    # Rack::Accept::Header::PublicInstanceMethods#sort.
+    # Rack::AcceptHeaders::Header::PublicInstanceMethods#sort.
     def best_encoding(values)
       encoding.best_of(values)
     end
@@ -82,7 +82,7 @@ module Rack::Accept
     # Determines the best language to use in a response from the given
     # languages, if any is acceptable. For more information on how this value
     # is determined, see the documentation for
-    # Rack::Accept::Header::PublicInstanceMethods#sort.
+    # Rack::AcceptHeaders::Header::PublicInstanceMethods#sort.
     def best_language(values)
       language.best_of(values)
     end

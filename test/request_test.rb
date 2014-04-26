@@ -1,7 +1,7 @@
 require_relative 'test_helper'
 
 class RequestTest < Minitest::Test
-  R = Rack::Accept::Request
+  R = Rack::AcceptHeaders::Request
 
   def test_media_type
     r = R.new('HTTP_ACCEPT' => 'text/*;q=0, text/html')

@@ -13,8 +13,8 @@
 ## 0.4 / April 5, 2010
 
   * Added support for media type queries with multiple range parameters
-  * Changed Rack::Accept::Header#sort method to return only single values
-    and moved previous functionality to Rack::Accept::Header#sort_with_qvalues
+  * Changed Rack::AcceptHeaders::Header#sort method to return only single values
+    and moved previous functionality to Rack::AcceptHeaders::Header#sort_with_qvalues
 
 ## 0.3 / April 3, 2010
 
@@ -23,7 +23,7 @@
 
 ## 0.2 / April 2, 2010
 
-  * Moved all common header methods into Rack::Accept::Header module
+  * Moved all common header methods into Rack::AcceptHeaders::Header module
   * Many improvements to the documentation
 
 ## 0.1.1 / April 1, 2010

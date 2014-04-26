@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/mjijackson/rack-accept.png)](https://travis-ci.org/mjijackson/rack-accept)
+[![Build Status](https://travis-ci.org/kamui/rack-accept_headers.png)](https://travis-ci.org/kamui/rack-accept_headers)
 
-**Rack::Accept** is a suite of tools for Ruby/Rack applications that eases the
+**Rack::AcceptHeaders** is a suite of tools for Ruby/Rack applications that eases the
 complexity of building and interpreting the Accept* family of [HTTP request headers][rfc].
 
 Some features of the library are:
@@ -19,13 +19,13 @@ Some features of the library are:
 [rfc-sec14-3]: http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.3
 [rfc-sec14-4]: http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.4
 [rack]: http://rack.rubyforge.org/
-[test]: http://github.com/mjijackson/rack-accept/tree/master/test/
+[test]: http://github.com/kamui/rack-accept_headers/tree/master/test/
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'rack-accept'
+    gem 'rack-accept_headers'
 
 And then execute:
 
@@ -33,29 +33,29 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install rack-accept
+    $ gem install rack-accept_headers
 
 Or install it from a local copy:
 
-    $ git clone git://github.com/mjijackson/rack-accept.git
-    $ cd rack-accept
+    $ git clone git://github.com/kamui/rack-accept_headers.git
+    $ cd rack-accept_headers
     $ rake package
     $ rake install
 
 ## Usage
 
-**Rack::Accept** implements the Rack middleware interface and may be used with any
-Rack-based application. Simply insert the `Rack::Accept` module in your Rack
-middleware pipeline and access the `Rack::Accept::Request` object in the
-`rack-accept.request` environment key, as in the following example.
+**Rack::AcceptHeaders** implements the Rack middleware interface and may be used with any
+Rack-based application. Simply insert the `Rack::AcceptHeaders` module in your Rack
+middleware pipeline and access the `Rack::AcceptHeaders::Request` object in the
+`rack-accept_headers.request` environment key, as in the following example.
 
 ```ruby
-require 'rack/accept'
+require 'rack/accept_headers'
 
-use Rack::Accept
+use Rack::AcceptHeaders
 
 app = lambda do |env|
-  accept = env['rack-accept.request']
+  accept = env['rack-accept_headers.request']
   response = Rack::Response.new
 
   if accept.media_type?('text/html')
@@ -72,18 +72,18 @@ end
 run app
 ```
 
-**Rack::Accept** can also construct automatic [406][406] responses if you set up
+**Rack::AcceptHeaders** can also construct automatic [406][406] responses if you set up
 the types of media, character sets, encoding, or languages your server is able
 to serve ahead of time. If you pass a configuration block to your `use`
-statement it will yield the `Rack::Accept::Context` object that is used for that
+statement it will yield the `Rack::AcceptHeaders::Context` object that is used for that
 invocation.
 
 [406]: http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7
 
 ```ruby
-require 'rack/accept'
+require 'rack/accept_headers'
 
-use(Rack::Accept) do |context|
+use(Rack::AcceptHeaders) do |context|
   # We only ever serve content in English or Japanese from this site, so if
   # the user doesn't accept either of these we will respond with a 406.
   context.languages = %w< en jp >
@@ -94,22 +94,22 @@ app = ...
 run app
 ```
 
-**Note:** _You should think carefully before using Rack::Accept in this way.
+**Note:** _You should think carefully before using Rack::AcceptHeaders in this way.
 Many user agents are careless about the types of Accept headers they send, and
 depend on apps not being too picky. Instead of automatically sending a 406, you
 should probably only send one when absolutely necessary._
 
-Additionally, **Rack::Accept** may be used outside of a Rack context to provide
+Additionally, **Rack::AcceptHeaders** may be used outside of a Rack context to provide
 any Ruby app the ability to construct and interpret Accept headers.
 
 ```ruby
-require 'rack/accept'
+require 'rack/accept_headers'
 
-mtype = Rack::Accept::MediaType.new
+mtype = Rack::AcceptHeaders::MediaType.new
 mtype.qvalues = { 'text/html' => 1, 'text/*' => 0.8, '*/*' => 0.5 }
 mtype.to_s # => "Accept: text/html, text/*;q=0.8, */*;q=0.5"
 
-cset = Rack::Accept::Charset.new('unicode-1-1, iso-8859-5;q=0.8')
+cset = Rack::AcceptHeaders::Charset.new('unicode-1-1, iso-8859-5;q=0.8')
 cset.best_of(%w< iso-8859-5 unicode-1-1 >)  # => "unicode-1-1"
 cset.accept?('iso-8859-1')                  # => true
 ```
@@ -122,10 +122,10 @@ don't have to worry about these kinds of details.
 ## Four-letter Words
 
   - Spec: [http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html][rfc-sec14]
-  - Code: [http://github.com/mjijackson/rack-accept][code]
-  - Bugs: [http://github.com/mjijackson/rack-accept/issues][bugs]
-  - Docs: [http://mjijackson.github.com/rack-accept][docs]
+  - Code: [http://github.com/kamui/rack-accept_headers][code]
+  - Bugs: [http://github.com/kamui/rack-accept_headers/issues][bugs]
+  - Docs: [http://rdoc.info/github/kamui/rack-accept_headers][docs]
 
-[code]: http://github.com/mjijackson/rack-accept
-[bugs]: http://github.com/mjijackson/rack-accept/issues
-[docs]: http://mjijackson.github.com/rack-accept
+[code]: http://github.com/kamui/rack-accept_headers
+[bugs]: http://github.com/kamui/rack-accept_headers/issues
+[docs]: http://rdoc.info/github/kamui/rack-accept_headers

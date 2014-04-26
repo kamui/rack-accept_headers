@@ -1,7 +1,7 @@
 require_relative 'test_helper'
 
 class MediaTypeTest < Minitest::Test
-  M = Rack::Accept::MediaType
+  M = Rack::AcceptHeaders::MediaType
 
   def test_qvalue
     m = M.new('text/html, text/*;q=0.3, */*;q=0.5')
@@ -17,7 +17,7 @@ class MediaTypeTest < Minitest::Test
   end
 
   def test_invalid_media_type
-    assert_raises Rack::Accept::Header::InvalidHeader do
+    assert_raises Rack::AcceptHeaders::Header::InvalidHeader do
       m = M.new('')
       m = M.new('text')
       m = M.new('text;q=1')

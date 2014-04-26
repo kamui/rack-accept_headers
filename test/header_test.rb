@@ -1,7 +1,7 @@
 require_relative 'test_helper'
 
 class HeaderTest < Minitest::Test
-  H = Rack::Accept::Header
+  H = Rack::AcceptHeaders::Header
 
   def test_parse_and_join
     # Accept
@@ -62,7 +62,7 @@ class HeaderTest < Minitest::Test
   end
 
   def test_invalid_header
-    assert_raises Rack::Accept::Header::InvalidHeader do
+    assert_raises Rack::AcceptHeaders::Header::InvalidHeader do
       h = H.parse(' / ')
     end
   end

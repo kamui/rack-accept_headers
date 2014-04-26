@@ -1,7 +1,7 @@
 require_relative 'test_helper'
 
 class LanguageTest < Minitest::Test
-  L = Rack::Accept::Language
+  L = Rack::AcceptHeaders::Language
 
   def test_qvalue
     l = L.new('')

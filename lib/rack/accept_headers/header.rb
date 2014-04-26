@@ -1,4 +1,4 @@
-module Rack::Accept
+module Rack::AcceptHeaders
   # Contains methods that are useful for working with Accept-style HTTP
   # headers. The MediaType, Charset, Encoding, and Language classes all mixin
   # this module.

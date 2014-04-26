@@ -2,7 +2,7 @@ ENV['RACK_ENV'] = 'test'
 
 require 'rack'
 require 'minitest/autorun'
-require 'rack/accept'
+require 'rack/accept_headers'
 
 class Minitest::Test
   attr_reader :context
@@ -13,7 +13,7 @@ class Minitest::Test
   end
 
   def request(env={}, method='GET', uri='/')
-    @context = Rack::Accept.new(fake_app)
+    @context = Rack::AcceptHeaders.new(fake_app)
     yield @context if block_given?
     mock_request = Rack::MockRequest.new(@context)
     @response = mock_request.request(method.to_s.upcase, uri, env)

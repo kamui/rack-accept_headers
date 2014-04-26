@@ -1,4 +1,4 @@
-module Rack::Accept
+module Rack::AcceptHeaders
   # Implements the Rack middleware interface.
   class Context
     # This error is raised when the server is not able to provide an acceptable
@@ -14,10 +14,10 @@ module Rack::Accept
       yield self if block_given?
     end
 
-    # Inserts a new Rack::Accept::Request object into the environment before
+    # Inserts a new Rack::AcceptHeaders::Request object into the environment before
     # handing the request to the app immediately downstream.
     def call(env)
-      request = env['rack-accept.request'] ||= Request.new(env)
+      request = env['rack-accept_headers.request'] ||= Request.new(env)
       check!(request) unless @checks.empty?
       @app.call(env)
     rescue AcceptError

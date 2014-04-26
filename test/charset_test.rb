@@ -1,7 +1,7 @@
 require_relative 'test_helper'
 
 class CharsetTest < Minitest::Test
-  C = Rack::Accept::Charset
+  C = Rack::AcceptHeaders::Charset
 
   def test_qvalue
     c = C.new('')
