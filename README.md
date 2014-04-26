@@ -23,15 +23,24 @@ Some features of the library are:
 
 ## Installation
 
-**Using [RubyGems](http://rubygems.org/):**
+Add this line to your application's Gemfile:
 
-    $ sudo gem install rack-accept
+    gem 'rack-accept'
 
-**From a local copy:**
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install rack-accept
+
+Or install it from a local copy:
 
     $ git clone git://github.com/mjijackson/rack-accept.git
     $ cd rack-accept
-    $ rake package && sudo rake install
+    $ rake package
+    $ rake install
 
 ## Usage
 
