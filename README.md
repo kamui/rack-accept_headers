@@ -3,6 +3,9 @@
 **Rack::AcceptHeaders** is a suite of tools for Ruby/Rack applications that eases the
 complexity of building and interpreting the Accept* family of [HTTP request headers][rfc].
 
+This is a fork of [rack-accept](https://github.com/mjijackson/rack-accept). The
+major addition being accept-extension parameter support.
+
 Some features of the library are:
 
   * Strict adherence to [RFC 2616][rfc], specifically [section 14][rfc-sec14]
