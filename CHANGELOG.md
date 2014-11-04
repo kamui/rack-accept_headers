@@ -1,4 +1,9 @@
-## 0.5.x
+## 0.5.1
+
+  * Fix test path in rake test task
+  * Lock rack at 1.5.2 and up.
+
+## 0.5.0
 
   * Add accept-extension parameter support
   * Add Guardfile
