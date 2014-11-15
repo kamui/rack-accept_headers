@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/kamui/rack-accept_headers.png)](https://travis-ci.org/kamui/rack-accept_headers)
 
+## I'm working on a replacement for this gem called [accept_headers](https://github.com/kamui/accept_headers).
+
 **Rack::AcceptHeaders** is a suite of tools for Ruby/Rack applications that eases the
 complexity of building and interpreting the Accept* family of [HTTP request headers][rfc].
 
